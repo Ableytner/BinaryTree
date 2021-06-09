@@ -20,6 +20,17 @@ class BinaryTree:
 
     def Print(self):
         if self.root != None:
-            self.root.PrintValues()
+            self.root.Print("")
         else:
             print("Tree is empty, nothing here to print")
+
+    def Print2(self):
+        if self.root != None:
+            data = ["└──── " + str(self.root.value)]
+            self.root.Print2(data, 0, 0)
+            for x in data:
+                print(x)
+        else:
+            print("Tree is empty, nothing here to print")
+
+

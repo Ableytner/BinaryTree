@@ -1,3 +1,4 @@
+import random
 import Node
 from BinaryTree import BinaryTree
 
@@ -6,10 +7,16 @@ def Main():
 
 #Main()
 bin1 = BinaryTree()
-bin1.Add(234)
-bin1.Add(23)
-bin1.Add(2244)
-bin1.Add(2)
-bin1.Add(24)
-bin1.Add(1234)
-print(bin1)
+
+bin1.Add(235)
+bin1.Add(153)
+bin1.Add(124)
+bin1.Add(115)
+bin1.Add(89)
+bin1.Add(364)
+bin1.Add(546)
+
+#for x in range(10):
+#    bin1.Add(random.randint(0, 1000))
+
+bin1.Print2()
