@@ -20,3 +20,5 @@ for x in range(50):
     bin1.Add(random.randint(0, 1000))
 
 bin1.display()
+
+#print([0, 1, 2, 3, 4] * 2)

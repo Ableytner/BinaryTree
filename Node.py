@@ -91,40 +91,62 @@ class Node:
             width = len(line)
             height = 1
             middle = width // 2
+
             return [line], width, height, middle
 
         # Only left child.
         if self.right is None:
             lines, oldWidth, oldHeight, oldMiddle = self.left._display_aux()
+
             line = '%s' % self.value
             width = len(line)
+
             first_line = (oldMiddle + 1) * ' ' + (oldWidth - oldMiddle - 1) * '_' + line
             second_line = oldMiddle * ' ' + '/' + (oldWidth - oldMiddle - 1 + width) * ' '
-            shifted_lines = [line + width * ' ' for line in lines]
-            return [first_line, second_line] + shifted_lines, oldWidth + width, oldHeight + 2, oldWidth + width // 2
+
+            shifted_lines = []
+            for line in lines:
+                shifted_lines.append(line + width * ' ')
+
+            newLines = [first_line, second_line] + shifted_lines
+
+            return newLines, oldWidth + width, oldHeight + 2, oldWidth + width // 2
 
         # Only right child.
         if self.left is None:
             lines, oldWidth, oldHeight, oldMiddle = self.right._display_aux()
+
             line = '%s' % self.value
             width = len(line)
+
             first_line = line + oldMiddle * '_' + (oldWidth - oldMiddle) * ' '
             second_line = (width + oldMiddle) * ' ' + '\\' + (oldWidth - oldMiddle - 1) * ' '
-            shifted_lines = [width * ' ' + line for line in lines]
-            return [first_line, second_line] + shifted_lines, oldWidth + width, oldHeight + 2, width // 2
+
+            shifted_lines = []
+            for line in lines:
+                shifted_lines.append(width * ' ' + line)
+
+            newLines = [first_line, second_line] + shifted_lines
+
+            return newLines, oldWidth + width, oldHeight + 2, width // 2
 
         # Two children.
         left, oldWidthLeft, oldHeightLeft, oldMiddleLeft = self.left._display_aux()
         right, oldWidthRight, oldHeightRight, oldMiddleRight = self.right._display_aux()
+
         line = '%s' % self.value
         width = len(line)
+
         first_line = (oldMiddleLeft + 1) * ' ' + (oldWidthLeft - oldMiddleLeft - 1) * '_' + line + oldMiddleRight * '_' + (oldWidthRight - oldMiddleRight) * ' '
         second_line = oldMiddleLeft * ' ' + '/' + (oldWidthLeft - oldMiddleLeft - 1 + width + oldMiddleRight) * ' ' + '\\' + (oldWidthRight - oldMiddleRight - 1) * ' '
+
         if oldHeightLeft < oldHeightRight:
             left += [oldWidthLeft * ' '] * (oldHeightRight - oldHeightLeft)
         elif oldHeightRight < oldHeightLeft:
             right += [oldWidthRight * ' '] * (oldHeightLeft - oldHeightRight)
+
         zipped_lines = zip(left, right)
         lines = [first_line, second_line] + [a + width * ' ' + b for a, b in zipped_lines]
+
         return lines, oldWidthLeft + oldWidthRight + width, max(oldHeightLeft, oldHeightRight) + 2, oldWidthLeft + width // 2
 
