@@ -83,6 +83,8 @@ class Node:
             value += " "
         return value
 
+#code from: https://stackoverflow.com/a/54074933
+#code cleaned up by me
     def _display_aux(self):
         """Returns list of strings, width, height, and horizontal coordinate of the root."""
         # No child.
