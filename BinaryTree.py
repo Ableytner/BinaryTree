@@ -33,4 +33,9 @@ class BinaryTree:
         else:
             print("Tree is empty, nothing here to print")
 
+    def display(self):
+        lines, *_ = self.root._display_aux()
+        for line in lines:
+            print(line)
+
 
