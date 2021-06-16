@@ -38,4 +38,20 @@ class BinaryTree:
         for line in lines:
             print(line)
 
+    def Print3(self):
+        data = []
 
+        if(self.root.left != None):
+            self.root.left.Print3(data, 6, "┌──── ")
+
+        data.append("└──── " + str(self.root.value))
+
+        if self.root.right != None:
+            self.root.right.Print3(data, 6, "└──── ")
+
+        returnStr = ""
+
+        for x in data:
+            returnStr += x + "\n"
+
+        return returnStr

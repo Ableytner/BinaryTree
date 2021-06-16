@@ -152,3 +152,20 @@ class Node:
 
         return lines, oldWidthLeft + oldWidthRight + width, max(oldHeightLeft, oldHeightRight) + 2, oldWidthLeft + width // 2
 
+    def Print3(self, data, before, line):
+        if self.left != None:
+            self.left.Print3(data, before + 6, "┌──── ")
+
+        data.append(self.GetBeforeStr(before) + line + str(self.value))
+
+        if self.right != None:
+            self.right.Print3(data, before + 6, "└──── ")
+
+    def GetBeforeStr(self, before):
+        returnStr = ""
+
+        while(before > 0):
+            before -= 6
+            returnStr += "|" + " " * 5
+
+        return returnStr

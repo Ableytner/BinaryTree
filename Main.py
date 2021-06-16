@@ -16,9 +16,11 @@ bin1 = BinaryTree()
 #bin1.Add(364)
 #bin1.Add(546)
 
-for x in range(50):
+for x in range(10):
     bin1.Add(random.randint(0, 1000))
 
 bin1.display()
+print()
+print(bin1.Print3())
 
 #print([0, 1, 2, 3, 4] * 2)
